@@ -1,0 +1,42 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("weather.csv")
+
+average_min_temp = df["MinTemp"].mean()
+average_max_temp = df["MaxTemp"].mean()
+total_rainfall = df["Rainfall"].sum()
+average_rainfall = df["Rainfall"].mean()
+rainfall_days = (df["Rainfall"] > 1.0).sum()
+rainfall_distribution = df["Rainfall"].describe()
+extreme_heat_days = df[df["MaxTemp"] > 40]
+extreme_cold_days = df[df["MinTemp"] < 0]
+heavy_rainfall_days = df[df["Rainfall"] > 50]
+
+print("Average Min Temperature (°C):", round(average_min_temp, 2))
+print("Average Max Temperature (°C):", round(average_max_temp, 2))
+print("Total Rainfall (mm):", round(total_rainfall, 2))
+print("Average Rainfall per Day (mm):", round(average_rainfall, 2))
+print("Days with Rainfall > 1mm:", rainfall_days)
+print("\nRainfall Distribution:")
+print(rainfall_distribution)
+print("\nExtreme Heat Days (MaxTemp > 40°C):", len(extreme_heat_days))
+print("Extreme Cold Days (MinTemp < 0°C):", len(extreme_cold_days))
+print("Heavy Rainfall Days (Rainfall > 50mm):", len(heavy_rainfall_days))
+
+plt.figure(figsize=(10,5))
+df["MinTemp"].plot(label="MinTemp", alpha=0.7)
+df["MaxTemp"].plot(label="MaxTemp", alpha=0.7)
+plt.title("Daily Min and Max Temperatures")
+plt.xlabel("Day")
+plt.ylabel("Temperature (°C)")
+plt.legend()
+plt.show()
+
+plt.figure(figsize=(10,5))
+df["Rainfall"].plot(label="Rainfall", color="blue")
+plt.title("Daily Rainfall")
+plt.xlabel("Day")
+plt.ylabel("Rainfall (mm)")
+plt.legend()
+plt.show()
