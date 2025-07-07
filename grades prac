@@ -1,0 +1,12 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+grades_df = pd.read_csv('grades.csv')
+
+plt.hist(grades_df['Grade'], bins=10, color='blue', edgecolor='black', alpha=0.7)
+plt.title('Grade Distribution')
+plt.xlabel('Grade')
+plt.ylabel('Frequency')
+plt.grid(True)
+
+
