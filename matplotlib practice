@@ -1,0 +1,37 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+x = [1, 2, 3, 4]
+y = [10, 20, 25, 30]
+
+plt.plot(x, y, linestyle = '--',label = "blue")
+plt.title("Simple Line Plot")
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+plt.grid(True)
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("data.csv")
+x = df['Pulse']
+y = df['Calories']
+x1 = [1, 2, 3, 4]
+y1 = [10, 20, 25, 30]
+plt.plot(x, y, linestyle = '--', label = "blue")
+plt.plot(x1, y1, linestyle = '--', label = "red")
+plt.title("Simple Line Plot")
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+plt.grid(True)
+plt.legend(loc='upper right', fontsize="large",shadow=True)
+plt.show()
+import matplotlib.pyplot as plt
+%matplotlib inline
+days=[1,2,3,4,5,6,7]
+max_t=[50,51,52,48,47,49,46]
+min_t=[43,42,40,44,33,35,37]
+avg_t=[45,48,48,46,40,42,41]
+plt.plot(days, max_t, label="max")
+plt.plot(days, min_t, label="min")
+plt.plot(days, avg_t, label="average")
+
+plt.legend(loc='best')
