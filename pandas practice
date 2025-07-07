@@ -1,0 +1,57 @@
+import numpy as np
+import pandas as pd
+d = pd.read_csv("data.csv")
+c = pd.read_csv("industry.csv")
+
+print("Data from 'industry.csv':")
+print(c.head())
+print("\nDataFrame shape:", c.shape)
+print("Column names:", c.columns.tolist())
+print("Summary statistics:\n", c.describe())
+print (c)
+
+print ("data from 'data.csv':")
+print (d)
+print(d.dropna())
+print(d.fillna(5))
+print(d.rename(columns={'old': 'new'}))
+import pandas as pd
+
+data = {
+    'Department': ['Sales', 'Sales', 'HR', 'HR', 'IT'],
+    'Employee': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'Salary': [50000, 55000, 60000, 58000, 62000]
+}
+
+d = pd.DataFrame(data)
+d.groupby('Department')['Salary'].mean()
+import pandas as pd
+
+
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Age': [24, 27, 22, 32, 29],
+    'City': ['New York', 'Los Angeles', 'Chicago', 'Miami', 'Austin']
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+
+filtered_df = df[df['Age'] > 25]
+print(filtered_df)
+
+
+def age_group(age):
+    return 'Young' if age < 30 else 'Adult'
+df['Age Group'] = df['Age'].apply(age_group)
+print(df)
+
+
+data2 = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Salary': [50000, 60000, 55000, 70000, 75000]
+}
+df2 = pd.DataFrame(data2)
+merged_df = pd.merge(df, df2, on='Name')
+print(merged_df)
