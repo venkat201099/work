@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+df = pd.read_csv("Average Temperature 1900-2023.csv")
+X = df[['Year']]
+y = df['Average_Fahrenheit_Temperature']
+
+model = LinearRegression()
+model.fit(X, y)
+
+future_years = pd.DataFrame({'Year': np.arange(2024, 2034)})
+future_preds = model.predict(future_years)
+
+plt.figure(figsize=(10, 6))
+plt.scatter(X, y, color='blue')
+plt.plot(X, model.predict(X), color='green')
+plt.plot(future_years, future_preds, color='red', linestyle='--')
+plt.xlabel("Year")
+plt.ylabel("Average Temperature (°F)")
+plt.title("Temperature Prediction")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+future_years['Predicted_Temperature'] = future_preds
+print(future_years)
